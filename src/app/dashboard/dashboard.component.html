@@ -1,0 +1,38 @@
+<div class="flex">
+  <!-- Desktop Sidebar -->
+  <div [ngClass]="{'w-64': isOpen, 'w-16': !isOpen}"
+       class="duration-300 h-screen p-4 bg-gray-800 text-white relative hidden sm:block">
+    <button (click)="isOpen = !isOpen"
+            class="absolute -right-3 top-4 bg-white text-gray-800 p-1 rounded-full card shadow-full ">
+      <i [class]="isOpen ? 'fas fa-chevron-left' : 'fas fa-chevron-right'"></i>
+    </button>
+
+    <div class="flex items-center gap-4 mb-8">
+      <i class="fas fa-bars text-xl"></i>
+      <span [ngClass]="{'hidden': !isOpen}" class="duration-200">
+        Dashboard
+      </span>
+    </div>
+
+    <nav>
+      <div *ngFor="let item of menuItems"
+           class="flex items-center gap-4 p-2 hover:bg-gray-700 rounded cursor-pointer">
+        <i class="fas {{item.icon}}"></i>
+        <span [ngClass]="{'hidden': !isOpen}" class="duration-200">
+          {{item.text}}
+        </span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="fixed bottom-0 left-0 sm:hidden w-full bg-gray-800 text-white p-4">
+    <div class="flex justify-around">
+      <div *ngFor="let item of menuItems" class="cursor-pointer">
+        <i class="fas {{item.icon}}"></i>
+      </div>
+    </div>
+  </div>
+
+  <section class="w-[90%] mx-16 my-8 text-3xl">Dashbaord </section>
+</div>
